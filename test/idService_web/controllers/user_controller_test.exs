@@ -4,15 +4,9 @@ defmodule IdServiceWeb.UserControllerTest do
   alias IdService.Accounts
   alias IdService.Accounts.User
 
-  @create_attrs %{
-    email: "some email",
-    password_hash: "some password_hash"
-  }
-  @update_attrs %{
-    email: "some updated email",
-    password_hash: "some updated password_hash"
-  }
-  @invalid_attrs %{email: nil, password_hash: nil}
+  @create_attrs %{email: "email@example.com", password: "some password", password_confirmation: "some password"}
+  @update_attrs %{email: "updated@example.com", password: "some updated password", password_confirmation: "some updated password"}
+  @invalid_attrs %{email: nil, password: "short", password_confirmation: "short"}
 
   def fixture(:user) do
     {:ok, user} = Accounts.create_user(@create_attrs)
@@ -39,8 +33,7 @@ defmodule IdServiceWeb.UserControllerTest do
 
       assert %{
                "id" => id,
-               "email" => "some email",
-               "password_hash" => "some password_hash"
+               "email" => "email@example.com",
              } = json_response(conn, 200)["data"]
     end
 
@@ -61,8 +54,7 @@ defmodule IdServiceWeb.UserControllerTest do
 
       assert %{
                "id" => id,
-               "email" => "some updated email",
-               "password_hash" => "some updated password_hash"
+               "email" => "updated@example.com",
              } = json_response(conn, 200)["data"]
     end
 
