@@ -18,6 +18,10 @@ config :idService, IdServiceWeb.Endpoint,
   pubsub_server: IdService.PubSub,
   live_view: [signing_salt: "QEZVPcir"]
 
+config :idService, IdService.Guardian,
+  issuer: "idService",
+  secret_key: "aeLTgFeQ9xCtkubmeUAn7x1PE4pDS9oh78zKd1bt+NwBJs0xsoP5uBPMSWLc0q6X"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

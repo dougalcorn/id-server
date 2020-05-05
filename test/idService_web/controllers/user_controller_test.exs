@@ -27,13 +27,15 @@ defmodule IdServiceWeb.UserControllerTest do
   describe "create user" do
     test "renders user when data is valid", %{conn: conn} do
       conn = post(conn, Routes.user_path(conn, :create), user: @create_attrs)
-      assert %{"id" => id} = json_response(conn, 201)["data"]
+      assert %{"jwt" => token} = json_response(conn, 200)
+      assert {:ok, %{id: id, email: email}, _claims} = IdService.Guardian.resource_from_token(token)
+
 
       conn = get(conn, Routes.user_path(conn, :show, id))
 
       assert %{
                "id" => id,
-               "email" => "email@example.com",
+               "email" => email,
              } = json_response(conn, 200)["data"]
     end
 
