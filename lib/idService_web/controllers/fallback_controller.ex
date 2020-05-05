@@ -19,4 +19,10 @@ defmodule IdServiceWeb.FallbackController do
     |> put_view(IdServiceWeb.ErrorView)
     |> render(:"404")
   end
+
+  def call(conn, {:error, :unauthorized}) do
+    conn
+    |> put_status(:unauthorized)
+    |> json(%{error: "Login error"})
+  end
 end

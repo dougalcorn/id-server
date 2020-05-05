@@ -7,6 +7,12 @@ defmodule IdServiceWeb.UserController do
 
   action_fallback IdServiceWeb.FallbackController
 
+  def sign_in(conn, %{"email" => email, "password" => password}) do
+    case Accounts.token_sign_in(email, password) do
+      {:ok, token, _claims} -> conn |> render("jwt.json", jwt: token)
+      _ -> {:error, :unauthorized}
+    end
+  end
   def index(conn, _params) do
     users = Accounts.list_users()
     render(conn, "index.json", users: users)
