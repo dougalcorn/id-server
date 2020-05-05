@@ -8,7 +8,8 @@ defmodule IdServiceWeb.Router do
   scope "/api/v1", IdServiceWeb do
     pipe_through :api
 
-    resources "/users", UserController
+    post "/sign_up", UserController, :create
+    resources "/users", UserController, except: [:create]
   end
 
   # Enables LiveDashboard only for development
