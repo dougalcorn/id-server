@@ -14,9 +14,11 @@ defmodule IdService.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: IdService.PubSub},
       # Start the Endpoint (http/https)
-      IdServiceWeb.Endpoint
+      IdServiceWeb.Endpoint,
       # Start a worker by calling: IdService.Worker.start_link(arg)
       # {IdService.Worker, arg}
+
+      IdService.AccountsServer
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -12,7 +12,7 @@ defmodule IdService.Guardian do
 
   def resource_from_claims(claims) do
     id = claims["sub"]
-    resource = IdService.Accounts.get_user!(id)
+    resource = IdService.AccountsServer.get_user!(id)
     {:ok,  resource}
   end
 
