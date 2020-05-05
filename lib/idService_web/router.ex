@@ -5,8 +5,10 @@ defmodule IdServiceWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", IdServiceWeb do
+  scope "/api/v1", IdServiceWeb do
     pipe_through :api
+
+    resources "/users", UserController
   end
 
   # Enables LiveDashboard only for development
