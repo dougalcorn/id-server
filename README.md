@@ -1,5 +1,9 @@
 # IdService
 
+Walk through of this tutorial on setting up Guardian and JWT:
+
+https://medium.com/@njwest/jwt-auth-with-an-elixir-on-phoenix-1-3-guardian-api-and-react-native-mobile-app-1bd00559ea51
+
 To start your Phoenix server:
 
   * Setup the project with `mix setup`
